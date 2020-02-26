@@ -1,0 +1,19 @@
+{
+  "name": "prismagram",
+  "version": "1.0.0",
+  "description": "instagram clone",
+  "repository": "https://github.com/chulhee23/prismagram.git",
+  "author": "chulhee23 <chulhee2351@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-node": "^0.0.1-security",
+    "graphql-yoga": "^1.18.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js"
+  }
+}
