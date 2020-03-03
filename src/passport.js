@@ -3,16 +3,25 @@ import path from "path";
 dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 import passport from "passport";
-import JwtStrategy from "passport-jwt";
+import {Strategy, ExtractJwt} from "passport-jwt";
 
 const jwtOptions = {
-  jwtFromRequest: JwtStrategy.ExtractJwt.fromAuthHeaderAsBearerToken(), // authorization header 에서 jwt 찾는 역할
-  secret: process.env.JWT_SECRET
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // authorization header 에서 jwt 찾는 역할
+  secretOrKey: process.env.JWT_SECRET
 }
 
-const verifyUser  = (payload, done) => {
+const verifyUser  = async (payload, done) => {
   try {
+    const user = await prisma.user({id: payload.id})
+    if (user !== null) {
+      return done(null, user);
+    } else {
+      return done(null, false);
 
+    }
+
+  } catch(err) {
+    return done(err, false)
   }
 }
-passport.use(new JwtStrategy(jwtOptions, verifyUser))
+passport.use(new Strategy(jwtOptions, verifyUser))
