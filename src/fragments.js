@@ -8,5 +8,16 @@ export const USER_FRAGMENT = `
       caption
     }
   }
-  
+
+`
+export const COMMENT_FRAGMENT = `
+  fragment CommentParts on Comment{
+    id
+    text
+    user {
+      id
+      username
+    }
+  }
+
 `
