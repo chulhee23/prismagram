@@ -1,0 +1,10 @@
+type profileResponse {
+  user: User!
+  posts: [Post!]!
+}
+
+# userFragment를, $fragment를 안쓰려고 위처럼 작성
+
+type Query{
+  me: profileResponse!
+}
